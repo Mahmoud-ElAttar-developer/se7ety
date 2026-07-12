@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Fetures/onboarding/onboarding_model.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Fetures/onboarding/onboarding_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingView extends StatefulWidget {
@@ -44,7 +44,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             Expanded(
               child: PageView.builder(
                 controller: pageController,
-                 itemCount: 3,
+                itemCount: 3,
                 onPageChanged: (value) {
                   setState(() {
                     currentIndex = value;

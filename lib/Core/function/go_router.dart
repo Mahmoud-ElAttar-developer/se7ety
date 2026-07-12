@@ -1,12 +1,12 @@
-import 'package:flutter_application_6/Fetures/authentication/presentation/view/doctor_upload_view.dart';
-import 'package:flutter_application_6/Fetures/authentication/presentation/view/login_view.dart';
-import 'package:flutter_application_6/Fetures/authentication/presentation/view/register_view.dart';
-import 'package:flutter_application_6/Fetures/doctor/nav_bar.dart';
-import 'package:flutter_application_6/Fetures/onboarding/on_boarding_view.dart';
-import 'package:flutter_application_6/Fetures/patient/home/presentation/nav_bar.dart';
-import 'package:flutter_application_6/Fetures/splash_sceen.dart';
-import 'package:flutter_application_6/Fetures/welcome_view.dart';
 import 'package:go_router/go_router.dart';
+import 'package:se7ety/Fetures/authentication/presentation/view/doctor_upload_view.dart';
+import 'package:se7ety/Fetures/authentication/presentation/view/login_view.dart';
+import 'package:se7ety/Fetures/authentication/presentation/view/register_view.dart';
+import 'package:se7ety/Fetures/doctor/nav_bar.dart';
+import 'package:se7ety/Fetures/onboarding/on_boarding_view.dart';
+import 'package:se7ety/Fetures/patient/home/presentation/nav_bar.dart';
+import 'package:se7ety/Fetures/splash_sceen.dart';
+import 'package:se7ety/Fetures/welcome_view.dart';
 
 final router = GoRouter(
   routes: [
@@ -43,7 +43,6 @@ final router = GoRouter(
     GoRoute(
       path: '/navBarPatient',
       builder: (context, state) => const PatientMainPage(),
-      
     ),
     GoRoute(
       path: '/navBarDoc',
@@ -51,5 +50,3 @@ final router = GoRouter(
     ),
   ],
 );
-
-

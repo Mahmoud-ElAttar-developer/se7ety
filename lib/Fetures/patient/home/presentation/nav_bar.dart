@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Fetures/patient/appointments/my_oppintments.dart';
-import 'package:flutter_application_6/Fetures/patient/home/presentation/home_view.dart';
-import 'package:flutter_application_6/Fetures/patient/profile/user_profile.dart';
-import 'package:flutter_application_6/Fetures/patient/search/presentaion_view/search_view.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Fetures/patient/appointments/my_oppintments.dart';
+import 'package:se7ety/Fetures/patient/home/presentation/home_view.dart';
+import 'package:se7ety/Fetures/patient/profile/user_profile.dart';
+import 'package:se7ety/Fetures/patient/search/presentaion_view/search_view.dart';
 
 class PatientMainPage extends StatefulWidget {
   const PatientMainPage({super.key});
@@ -63,10 +63,7 @@ class _MainPageState extends State<PatientMainPage> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10.0,
-              vertical: 8,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
             child: GNav(
               curve: Curves.easeOutExpo,
               rippleColor: Colors.grey,
@@ -75,10 +72,7 @@ class _MainPageState extends State<PatientMainPage> {
               tabBorderRadius: 20,
               gap: 5,
               activeColor: Colors.white,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               duration: const Duration(milliseconds: 400),
               tabBackgroundColor: AppColors.color1,
               textStyle: getbodyStyle(color: AppColors.white),

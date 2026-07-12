@@ -1,14 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Fetures/patient/appointments/my_oppintments_list.dart';
-
+import 'package:se7ety/Fetures/patient/appointments/my_oppintments_list.dart';
 
 class MyAppointments extends StatefulWidget {
   const MyAppointments({super.key});
 
   @override
   State<MyAppointments> createState() => _MyAppointmentsState();
-
 }
 
 class _MyAppointmentsState extends State<MyAppointments> {
@@ -28,11 +26,7 @@ class _MyAppointmentsState extends State<MyAppointments> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'مواعيد الحجز',
-        ),
-      ),
+      appBar: AppBar(title: const Text('مواعيد الحجز')),
       body: const Padding(
         padding: EdgeInsets.all(10),
         child: MyAppointmentList(),

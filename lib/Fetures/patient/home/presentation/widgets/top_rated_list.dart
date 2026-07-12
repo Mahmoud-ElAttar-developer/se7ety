@@ -1,14 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Fetures/patient/search/presentaion_view/doctor_profile.dart';
-import 'package:flutter_application_6/core/widgets/doctor_card.dart';
+import 'package:se7ety/Fetures/patient/search/presentaion_view/doctor_profile.dart';
+import 'package:se7ety/core/widgets/doctor_card.dart';
 
 class TopRatedList extends StatefulWidget {
   const TopRatedList({super.key});
 
   @override
- State<TopRatedList> createState() => _TopRatedListState();
-
+  State<TopRatedList> createState() => _TopRatedListState();
 }
 
 class _TopRatedListState extends State<TopRatedList> {
@@ -40,13 +39,16 @@ class _TopRatedListState extends State<TopRatedList> {
                   name: doctorData.containsKey('name') && doctor['name'] != null
                       ? doctor['name']
                       : 'طبيب افتراضي',
-                                     image: doctorData.containsKey('image') &&
-                  doctor['image'] != null &&
-                  doctor['image'].toString().trim().isNotEmpty && // فحص لو مش فارغ
-                  doctor['image'].toString().startsWith('http')
-              ? doctor['image']
-              : 'assets/3d-happy-cartoon-doctor-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.webp',
-
+                  image:
+                      doctorData.containsKey('image') &&
+                          doctor['image'] != null &&
+                          doctor['image']
+                              .toString()
+                              .trim()
+                              .isNotEmpty && // فحص لو مش فارغ
+                          doctor['image'].toString().startsWith('http')
+                      ? doctor['image']
+                      : 'assets/3d-happy-cartoon-doctor-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.webp',
 
                   specialization:
                       doctorData.containsKey('specialization') &&

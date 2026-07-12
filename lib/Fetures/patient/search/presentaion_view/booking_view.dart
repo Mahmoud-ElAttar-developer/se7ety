@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Core/widgets/custom_alert_dialog.dart';
-import 'package:flutter_application_6/Core/widgets/custom_button.dart';
-import 'package:flutter_application_6/Core/widgets/doctor_card.dart';
-import 'package:flutter_application_6/Fetures/patient/appointments/my_oppintments.dart';
-import 'package:flutter_application_6/Fetures/patient/search/data/doctor_model.dart';
-import 'package:flutter_application_6/Fetures/patient/search/presentaion_view/widgets/available_appointments.dart';
 import 'package:intl/intl.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Core/widgets/custom_alert_dialog.dart';
+import 'package:se7ety/Core/widgets/custom_button.dart';
+import 'package:se7ety/Core/widgets/doctor_card.dart';
+import 'package:se7ety/Fetures/patient/appointments/my_oppintments.dart';
+import 'package:se7ety/Fetures/patient/search/data/doctor_model.dart';
+import 'package:se7ety/Fetures/patient/search/presentaion_view/widgets/available_appointments.dart';
 
 class BookingView extends StatefulWidget {
   final Doctor doctor;
@@ -18,7 +18,6 @@ class BookingView extends StatefulWidget {
 
   @override
   State<BookingView> createState() => _BookingViewState();
-
 }
 
 class _BookingViewState extends State<BookingView> {
@@ -50,13 +49,14 @@ class _BookingViewState extends State<BookingView> {
           selectedDate,
           widget.doctor.startHour,
           widget.doctor.endHour,
-                       ).then((value) {
+        )
+        .then((value) {
           setState(() {
             if (value.isNotEmpty) {
               for (var i in value) {
                 times.add(i.hour);
               }
-                       } else {
+            } else {
               // لو اليوم زوجي حط مواعيد الصبح، لو فردي حط مواعيد بعد الظهر
               if (selectedDate.day % 2 == 0) {
                 times.addAll([9, 10, 11, 12, 13]); // مواعيد صباحية
@@ -65,7 +65,8 @@ class _BookingViewState extends State<BookingView> {
               }
             }
           });
-        }).catchError((error) {
+        })
+        .catchError((error) {
           setState(() {
             if (selectedDate.day % 2 == 0) {
               times.addAll([9, 10, 11, 12, 13]);
@@ -74,7 +75,6 @@ class _BookingViewState extends State<BookingView> {
             }
           });
         });
-
   }
 
   Future<void> selectDate(BuildContext context) async {

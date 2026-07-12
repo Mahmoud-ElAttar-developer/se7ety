@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Fetures/authentication/presentation/view_model/auth_cubit.dart';
-import 'package:flutter_application_6/Fetures/authentication/presentation/view_model/auth_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Fetures/authentication/presentation/view_model/auth_cubit.dart';
+import 'package:se7ety/Fetures/authentication/presentation/view_model/auth_states.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key, required this.index});
@@ -33,14 +33,13 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthStates>(
       listener: (context, state) async {
-       
         if (state is RegisterSuccessState) {
           // إغلاق أي دايالوج مفتوح أولاً ثم الانتقال
-         if (widget.index==0) {
-          context.go('/doctorUpload');
-        }else{
-          context.go('/navBarPatient');
-        }
+          if (widget.index == 0) {
+            context.go('/doctorUpload');
+          } else {
+            context.go('/navBarPatient');
+          }
         } else if (state is RegisterLoadingState) {
           // عرض دايالوج التحميل فقط عند حالة الـ Loading
           showDialog(
@@ -203,7 +202,6 @@ class _RegisterViewState extends State<RegisterView> {
                         children: [
                           TextButton(
                             onPressed: () {
-                              
                               context.go('/login');
                             },
                             child: Text(

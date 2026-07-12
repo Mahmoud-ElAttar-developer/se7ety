@@ -2,16 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
 import 'package:intl/intl.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
 
 class AppointmentHistoryList extends StatefulWidget {
   const AppointmentHistoryList({super.key});
 
   @override
   State<AppointmentHistoryList> createState() => _AppointmentHistoryListState();
-
 }
 
 class _AppointmentHistoryListState extends State<AppointmentHistoryList> {

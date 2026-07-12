@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/function/go_router.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Fetures/authentication/presentation/view_model/auth_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:se7ety/Core/function/go_router.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Fetures/authentication/presentation/view_model/auth_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

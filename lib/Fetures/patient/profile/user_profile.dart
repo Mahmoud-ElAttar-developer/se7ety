@@ -4,13 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Core/widgets/custom_button.dart';
-import 'package:flutter_application_6/Core/widgets/tile_widget.dart';
-import 'package:flutter_application_6/Fetures/patient/profile/appointment_history_list.dart';
-import 'package:flutter_application_6/Fetures/patient/profile/user_setting.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Core/widgets/custom_button.dart';
+import 'package:se7ety/Core/widgets/tile_widget.dart';
+import 'package:se7ety/Fetures/patient/profile/appointment_history_list.dart';
+import 'package:se7ety/Fetures/patient/profile/user_setting.dart';
 
 class PatientProfile extends StatefulWidget {
   const PatientProfile({super.key});

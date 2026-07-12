@@ -2,20 +2,18 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Fetures/patient/home/presentation/search_home_view.dart';
-import 'package:flutter_application_6/Fetures/patient/home/presentation/widgets/caterogy_list.dart';
-import 'package:flutter_application_6/Fetures/patient/home/presentation/widgets/top_rated_list.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Fetures/patient/home/presentation/search_home_view.dart';
+import 'package:se7ety/Fetures/patient/home/presentation/widgets/caterogy_list.dart';
+import 'package:se7ety/Fetures/patient/home/presentation/widgets/top_rated_list.dart';
 
 class PatientHomePage extends StatefulWidget {
   const PatientHomePage({super.key});
 
   @override
   State<PatientHomePage> createState() => _HomePageState();
-
 }
 
 class _HomePageState extends State<PatientHomePage> {
@@ -56,8 +54,9 @@ class _HomePageState extends State<PatientHomePage> {
         elevation: 0,
         title: Text(
           'صــــــحّـتــي',
-          style: getTitleStyle(color: AppColors.black)
-              .copyWith(fontFamily: GoogleFonts.notoKufiArabic().fontFamily),
+          style: getTitleStyle(
+            color: AppColors.black,
+          ).copyWith(fontFamily: GoogleFonts.notoKufiArabic().fontFamily),
         ),
       ),
       body: SingleChildScrollView(
@@ -66,20 +65,21 @@ class _HomePageState extends State<PatientHomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text.rich(TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'مرحبا، ',
-                    style: getbodyStyle(fontSize: 18),
-                  ),
-                  TextSpan(
-                    text: user?.displayName,
-                    style: getTitleStyle(),
-                  )
-                ],
-              )),
-              Text("احجز الآن وكن جزءًا من رحلتك الصحية.",
-                  style: getTitleStyle(color: AppColors.black, fontSize: 25)),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'مرحبا، ',
+                      style: getbodyStyle(fontSize: 18),
+                    ),
+                    TextSpan(text: user?.displayName, style: getTitleStyle()),
+                  ],
+                ),
+              ),
+              Text(
+                "احجز الآن وكن جزءًا من رحلتك الصحية.",
+                style: getTitleStyle(color: AppColors.black, fontSize: 25),
+              ),
               const SizedBox(height: 15),
 
               // --------------- Search Bar --------------------------
@@ -89,10 +89,10 @@ class _HomePageState extends State<PatientHomePage> {
                   borderRadius: const BorderRadius.all(Radius.circular(25)),
                   boxShadow: [
                     BoxShadow(
-                         color: Colors.grey.withAlpha(76),
+                      color: Colors.grey.withAlpha(76),
                       blurRadius: 15,
                       offset: const Offset(5, 5),
-                    )
+                    ),
                   ],
                 ),
                 child: TextFormField(
@@ -113,52 +113,43 @@ class _HomePageState extends State<PatientHomePage> {
                         color: Colors.white,
                         icon: const Icon(Icons.search),
                         onPressed: () {
-                          setState(
-                            () {
-                              _doctorName.text.isEmpty
-                                  ? Container()
-                                  : Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => SearchHomeView(
-                                          searchKey: _doctorName.text,
-                                        ),
+                          setState(() {
+                            _doctorName.text.isEmpty
+                                ? Container()
+                                : Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SearchHomeView(
+                                        searchKey: _doctorName.text,
                                       ),
-                                    );
-                            },
-                          );
+                                    ),
+                                  );
+                          });
                         },
                       ),
                     ),
                   ),
                   style: getbodyStyle(),
                   onFieldSubmitted: (String value) {
-                    setState(
-                      () {
-                        _doctorName.text.isEmpty
-                            ? Container()
-                            : Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SearchHomeView(
-                                    searchKey: _doctorName.text,
-                                  ),
-                                ),
-                              );
-                      },
-                    );
+                    setState(() {
+                      _doctorName.text.isEmpty
+                          ? Container()
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    SearchHomeView(searchKey: _doctorName.text),
+                              ),
+                            );
+                    });
                   },
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              // ----------------  SpecialistsWidget --------------------,
+              const SizedBox(height: 10),
 
+              // ----------------  SpecialistsWidget --------------------,
               const SpecialistsBanner(),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
 
               // ----------------  Top Rated --------------------,
               Text(
@@ -166,9 +157,7 @@ class _HomePageState extends State<PatientHomePage> {
                 textAlign: TextAlign.center,
                 style: getTitleStyle(fontSize: 16),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               const TopRatedList(),
             ],
           ),

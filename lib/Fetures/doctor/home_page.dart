@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-
+import 'package:se7ety/Core/utils/styles.dart';
 
 class DoctorHomePage extends StatefulWidget {
   const DoctorHomePage({super.key});
@@ -41,10 +40,7 @@ class _HomePageState extends State<DoctorHomePage> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
-          'صـحتيّ',
-          style: getTitleStyle(),
-        ),
+        title: Text('صـحتيّ', style: getTitleStyle()),
       ),
       body: SafeArea(
         child: ListView(
@@ -53,22 +49,21 @@ class _HomePageState extends State<DoctorHomePage> {
           children: [
             Column(
               children: [
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.only(left: 20, bottom: 10),
-                  child: Text.rich(TextSpan(children: [
+                  child: Text.rich(
                     TextSpan(
-                      text: 'Hello, Dr. ',
-                      style: getbodyStyle(),
+                      children: [
+                        TextSpan(text: 'Hello, Dr. ', style: getbodyStyle()),
+                        TextSpan(
+                          text: user?.displayName,
+                          style: getbodyStyle(),
+                        ),
+                      ],
                     ),
-                    TextSpan(
-                      text: user?.displayName,
-                      style: getbodyStyle(),
-                    )
-                  ])),
+                  ),
                 ),
                 Container(
                   alignment: Alignment.centerLeft,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
 import 'package:go_router/go_router.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
 
 class WelcomeView extends StatelessWidget {
   const WelcomeView({super.key});
@@ -68,7 +68,7 @@ class WelcomeView extends StatelessWidget {
                             // الزر الأول: دخول كـ دكتور (index: 0)
                             GestureDetector(
                               onTap: () {
-                               context.push(
+                                context.push(
                                   '/login',
                                   extra: 0,
                                 ); // 👈 يمرر الـ index كـ معامل إضافي للشاشة التالية

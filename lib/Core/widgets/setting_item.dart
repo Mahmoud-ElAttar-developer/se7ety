@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
 
 class SettingsListItem extends StatelessWidget {
   final IconData icon;
@@ -9,12 +8,13 @@ class SettingsListItem extends StatelessWidget {
   final bool hasNavigation;
   final void Function()? onTap;
 
-  const SettingsListItem(
-      {super.key,
-      required this.icon,
-      required this.text,
-      this.hasNavigation = true,
-      required this.onTap});
+  const SettingsListItem({
+    super.key,
+    required this.icon,
+    required this.text,
+    this.hasNavigation = true,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,29 +23,19 @@ class SettingsListItem extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
         height: 55,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: AppColors.scaffoldBG,
         ),
         child: Row(
           children: [
-            Icon(
-              icon,
-              size: 18,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
+            Icon(icon, size: 18),
+            const SizedBox(width: 10),
             Text(text, style: getsmallStyle(fontWeight: FontWeight.w600)),
             const Spacer(),
             if (hasNavigation)
-              const Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 18,
-              ),
+              const Icon(Icons.arrow_forward_ios_rounded, size: 18),
           ],
         ),
       ),

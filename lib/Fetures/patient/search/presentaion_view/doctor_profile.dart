@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Core/widgets/custom_button.dart';
-import 'package:flutter_application_6/Core/widgets/tile_widget.dart';
-import 'package:flutter_application_6/Fetures/patient/search/data/doctor_model.dart';
-import 'package:flutter_application_6/Fetures/patient/search/presentaion_view/booking_view.dart';
-import 'package:flutter_application_6/Fetures/patient/search/presentaion_view/widgets/contact_icon.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Core/widgets/custom_button.dart';
+import 'package:se7ety/Core/widgets/tile_widget.dart';
+import 'package:se7ety/Fetures/patient/search/data/doctor_model.dart';
+import 'package:se7ety/Fetures/patient/search/presentaion_view/booking_view.dart';
+import 'package:se7ety/Fetures/patient/search/presentaion_view/widgets/contact_icon.dart';
 
 class DoctorProfile extends StatefulWidget {
   final String? doctor;

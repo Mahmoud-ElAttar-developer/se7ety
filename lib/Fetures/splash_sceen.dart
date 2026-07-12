@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:se7ety/Core/utils/colors.dart';
 
 class SplashSceen extends StatefulWidget {
   const SplashSceen({super.key});
@@ -24,13 +24,22 @@ class _SplashSceenState extends State<SplashSceen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Lottie.asset('assets/Pediatrics.json', width: 350),
-          Text('المستشفى الطبي',style: TextStyle(color:AppColors.color1,fontSize: 22, fontWeight: FontWeight.bold),)
-        ],
-      ),),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset('assets/Pediatrics.json', width: 350),
+            Text(
+              'المستشفى الطبي',
+              style: TextStyle(
+                color: AppColors.color1,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

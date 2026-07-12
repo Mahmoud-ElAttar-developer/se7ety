@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/colors.dart';
 
 
 class CustomButton extends StatelessWidget {

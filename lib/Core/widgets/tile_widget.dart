@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
 
 class TileWidget extends StatelessWidget {
   const TileWidget({super.key, required this.text, required this.icon});
@@ -19,16 +18,10 @@ class TileWidget extends StatelessWidget {
             height: 27,
             width: 27,
             color: AppColors.color1,
-            child: Icon(
-              icon,
-              color: Colors.white,
-              size: 16,
-            ),
+            child: Icon(icon, color: Colors.white, size: 16),
           ),
         ),
-        const SizedBox(
-          width: 10,
-        ),
+        const SizedBox(width: 10),
         Expanded(child: Text(text, style: getbodyStyle())),
       ],
     );

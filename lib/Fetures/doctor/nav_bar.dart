@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Fetures/doctor/home_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Fetures/doctor/home_page.dart';
 
 class DoctorMainPage extends StatefulWidget {
   const DoctorMainPage({super.key});

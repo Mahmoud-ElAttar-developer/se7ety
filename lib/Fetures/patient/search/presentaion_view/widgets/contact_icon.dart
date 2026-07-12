@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-
+import 'package:se7ety/Core/utils/colors.dart';
 
 class IconTile extends StatelessWidget {
   final IconData imgAssetPath;
   final Color backColor;
   final void Function()? onTap;
   final String num;
-  const IconTile(
-      {super.key,
-      required this.imgAssetPath,
-      required this.backColor,
-      this.onTap,
-      required this.num});
+  const IconTile({
+    super.key,
+    required this.imgAssetPath,
+    required this.backColor,
+    this.onTap,
+    required this.num,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +24,14 @@ class IconTile extends StatelessWidget {
           height: 45,
           width: 45,
           decoration: BoxDecoration(
-              color: backColor, borderRadius: BorderRadius.circular(15)),
+            color: backColor,
+            borderRadius: BorderRadius.circular(15),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(num),
-              Icon(
-                imgAssetPath,
-                color: AppColors.black,
-              ),
+              Icon(imgAssetPath, color: AppColors.black),
             ],
           ),
         ),

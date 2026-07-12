@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Fetures/patient/profile/user_setting.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Fetures/patient/profile/user_setting.dart';
 
 class UpdateUserDetails extends StatefulWidget {
   final String label;

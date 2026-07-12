@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
 
 class DoctorCard extends StatelessWidget {
   const DoctorCard({
@@ -34,8 +34,7 @@ class DoctorCard extends StatelessWidget {
               BoxShadow(
                 offset: const Offset(-3, 0),
                 blurRadius: 15,
-               color: Colors.grey.withValues(alpha: 0.1),
-
+                color: Colors.grey.withValues(alpha: 0.1),
               ),
             ],
           ),

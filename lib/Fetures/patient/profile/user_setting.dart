@@ -1,18 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Core/widgets/setting_item.dart';
-import 'package:flutter_application_6/Fetures/patient/profile/updat_user_details.dart';
-import 'package:flutter_application_6/Fetures/welcome_view.dart';
-
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Core/widgets/setting_item.dart';
+import 'package:se7ety/Fetures/patient/profile/updat_user_details.dart';
+import 'package:se7ety/Fetures/welcome_view.dart';
 
 class UserSettings extends StatefulWidget {
   const UserSettings({super.key});
 
   @override
   State<UserSettings> createState() => _UserSettingsState();
-
 }
 
 class _UserSettingsState extends State<UserSettings> {
@@ -41,16 +39,11 @@ class _UserSettingsState extends State<UserSettings> {
           padding: const EdgeInsets.only(left: 10),
           child: IconButton(
             splashRadius: 25,
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: AppColors.white,
-            ),
+            icon: Icon(Icons.arrow_back_ios, color: AppColors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
-        title: const Text(
-          'الاعدادات',
-        ),
+        title: const Text('الاعدادات'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -61,9 +54,12 @@ class _UserSettingsState extends State<UserSettings> {
               text: 'إعدادات الحساب',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (contex) => const UpdateUserDetails(label: '', field: '',)));
+                  context,
+                  MaterialPageRoute(
+                    builder: (contex) =>
+                        const UpdateUserDetails(label: '', field: ''),
+                  ),
+                );
               },
             ),
             SettingsListItem(
@@ -104,10 +100,11 @@ class _UserSettingsState extends State<UserSettings> {
               child: TextButton(
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                        builder: (context) => const WelcomeView(),
-                      ),
-                      (Route<dynamic> route) => false);
+                    MaterialPageRoute(
+                      builder: (context) => const WelcomeView(),
+                    ),
+                    (Route<dynamic> route) => false,
+                  );
                   _signOut();
                 },
                 child: Text(

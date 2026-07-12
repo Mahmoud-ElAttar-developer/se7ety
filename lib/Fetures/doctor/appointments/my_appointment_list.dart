@@ -2,19 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Core/widgets/no_shuduled.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Core/widgets/no_shuduled.dart';
 
 class MyAppointmentList extends StatefulWidget {
   const MyAppointmentList({super.key});
 
   @override
   State<MyAppointmentList> createState() => _MyAppointmentListState();
-
 }
 
 class _MyAppointmentListState extends State<MyAppointmentList> {
@@ -26,9 +24,7 @@ class _MyAppointmentListState extends State<MyAppointmentList> {
     user = _auth.currentUser;
   }
 
-  Future<void> deleteAppointment(
-    String docID,
-  ) {
+  Future<void> deleteAppointment(String docID) {
     return FirebaseFirestore.instance
         .collection('appointments')
         .doc('appointments')
@@ -38,14 +34,16 @@ class _MyAppointmentListState extends State<MyAppointmentList> {
   }
 
   String _dateFormatter(String timestamp) {
-    String formattedDate =
-        DateFormat('dd-MM-yyyy').format(DateTime.parse(timestamp));
+    String formattedDate = DateFormat(
+      'dd-MM-yyyy',
+    ).format(DateTime.parse(timestamp));
     return formattedDate;
   }
 
   String _timeFormatter(String timestamp) {
-    String formattedTime =
-        DateFormat('hh:mm').format(DateTime.parse(timestamp));
+    String formattedTime = DateFormat(
+      'hh:mm',
+    ).format(DateTime.parse(timestamp));
     return formattedTime;
   }
 
@@ -69,9 +67,7 @@ class _MyAppointmentListState extends State<MyAppointmentList> {
             TextButton(
               child: const Text("نعم"),
               onPressed: () {
-                deleteAppointment(
-                  _documentID!,
-                );
+                deleteAppointment(_documentID!);
                 Navigator.of(context).pop();
               },
             ),
@@ -126,8 +122,9 @@ class _MyAppointmentListState extends State<MyAppointmentList> {
   }
 
   bool _compareDate(String date) {
-    if (_dateFormatter(DateTime.now().toString())
-            .compareTo(_dateFormatter(date)) ==
+    if (_dateFormatter(
+          DateTime.now().toString(),
+        ).compareTo(_dateFormatter(date)) ==
         0) {
       return true;
     } else {
@@ -156,9 +153,7 @@ class _MyAppointmentListState extends State<MyAppointmentList> {
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
           return snapshot.data?.size == 0
               ? const NoScheduledWidget()
@@ -168,16 +163,11 @@ class _MyAppointmentListState extends State<MyAppointmentList> {
                   itemBuilder: (context, index) {
                     DocumentSnapshot document = snapshot.data!.docs[index];
                     if (_checkDiff(document['date'].toDate())) {
-                      deleteAppointment(
-                        document.id,
-                      );
+                      deleteAppointment(document.id);
                     }
                     return Container(
                       margin: const EdgeInsets.only(top: 10),
-                      padding: const EdgeInsets.only(
-                        left: 10,
-                        right: 10,
-                      ),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       decoration: BoxDecoration(
                         // color: AppColors.scaffoldBG,
                         borderRadius: BorderRadius.circular(15),
@@ -192,7 +182,7 @@ class _MyAppointmentListState extends State<MyAppointmentList> {
                             : AppColors.scaffoldBG,
                         collapsedBackgroundColor: AppColors.scaffoldBG,
                         title: Text(
-                           "اسم المريض : ${document['name']}",
+                          "اسم المريض : ${document['name']}",
                           style: getTitleStyle(),
                         ),
                         subtitle: Padding(
@@ -201,38 +191,40 @@ class _MyAppointmentListState extends State<MyAppointmentList> {
                             children: [
                               Row(
                                 children: [
-                                  Icon(Icons.calendar_month_rounded,
-                                      color: AppColors.color1, size: 16),
-                                  const SizedBox(
-                                    width: 10,
+                                  Icon(
+                                    Icons.calendar_month_rounded,
+                                    color: AppColors.color1,
+                                    size: 16,
                                   ),
+                                  const SizedBox(width: 10),
                                   Text(
                                     _dateFormatter(
-                                        document['date'].toDate().toString()),
+                                      document['date'].toDate().toString(),
+                                    ),
                                     style: getbodyStyle(),
                                   ),
-                                  const SizedBox(
-                                    width: 30,
-                                  ),
+                                  const SizedBox(width: 30),
                                   Text(
-                                    _compareDate(document['date']
-                                            .toDate()
-                                            .toString())
+                                    _compareDate(
+                                          document['date'].toDate().toString(),
+                                        )
                                         ? "اليوم"
                                         : "",
                                     style: getbodyStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.green),
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green,
+                                    ),
                                   ),
                                 ],
                               ),
                               Row(
                                 children: [
-                                  Icon(Icons.watch_later_outlined,
-                                      color: AppColors.color1, size: 16),
-                                  const SizedBox(
-                                    width: 10,
+                                  Icon(
+                                    Icons.watch_later_outlined,
+                                    color: AppColors.color1,
+                                    size: 16,
                                   ),
+                                  const SizedBox(width: 10),
                                   Text(
                                     _timeFormatter(
                                       document['date'].toDate().toString(),
@@ -247,78 +239,74 @@ class _MyAppointmentListState extends State<MyAppointmentList> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(
-                                bottom: 5, right: 10, left: 16),
+                              bottom: 5,
+                              right: 10,
+                              left: 16,
+                            ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Row(
                                   children: [
-                                    Icon(Icons.location_on_rounded,
-                                        color: AppColors.color1, size: 16),
-                                    const SizedBox(
-                                      width: 10,
+                                    Icon(
+                                      Icons.location_on_rounded,
+                                      color: AppColors.color1,
+                                      size: 16,
                                     ),
-                                    Text(
-                                      document['location'],
-                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(document['location']),
                                   ],
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
+                                const SizedBox(height: 10),
                                 Row(
                                   children: [
-                                    Icon(Icons.call,
-                                        color: AppColors.color1, size: 16),
-                                    const SizedBox(
-                                      width: 10,
+                                    Icon(
+                                      Icons.call,
+                                      color: AppColors.color1,
+                                      size: 16,
                                     ),
-                                    Text(
-                                      document['phone'],
-                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(document['phone']),
                                   ],
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      document['description'],
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
+                                const SizedBox(height: 10),
+                                Row(children: [Text(document['description'])]),
+                                const SizedBox(height: 10),
                                 Row(
                                   children: [
                                     Expanded(
                                       child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              foregroundColor: AppColors.white,
-                                              backgroundColor: Colors.green),
-                                          onPressed: () {
-                                            _documentID = document.id;
-                                            showCompleteDialog(
-                                                context, document.id);
-                                          },
-                                          child: const Text('تم الكشف')),
+                                        style: ElevatedButton.styleFrom(
+                                          foregroundColor: AppColors.white,
+                                          backgroundColor: Colors.green,
+                                        ),
+                                        onPressed: () {
+                                          _documentID = document.id;
+                                          showCompleteDialog(
+                                            context,
+                                            document.id,
+                                          );
+                                        },
+                                        child: const Text('تم الكشف'),
+                                      ),
                                     ),
                                     const Gap(20),
                                     Expanded(
                                       child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              foregroundColor: AppColors.white,
-                                              backgroundColor:
-                                                  AppColors.redColor),
-                                          onPressed: () {
-                                            _documentID = document.id;
-                                            showAlertDialog(
-                                                context, document['doctorID']);
-                                          },
-                                          child: const Text('حذف الحجز')),
+                                        style: ElevatedButton.styleFrom(
+                                          foregroundColor: AppColors.white,
+                                          backgroundColor: AppColors.redColor,
+                                        ),
+                                        onPressed: () {
+                                          _documentID = document.id;
+                                          showAlertDialog(
+                                            context,
+                                            document['doctorID'],
+                                          );
+                                        },
+                                        child: const Text('حذف الحجز'),
+                                      ),
                                     ),
                                   ],
                                 ),

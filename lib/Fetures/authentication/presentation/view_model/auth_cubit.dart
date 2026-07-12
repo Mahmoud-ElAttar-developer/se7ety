@@ -2,21 +2,23 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_application_6/Fetures/authentication/presentation/view_model/auth_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:se7ety/Fetures/authentication/presentation/view_model/auth_states.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
 
   // login
   static AuthCubit get(dynamic context) => BlocProvider.of(context);
-    // login for users (Doctor / Patient)
+  // login for users (Doctor / Patient)
   Future<void> login(String email, String password) async {
     emit(LoginLoadingState());
     try {
-      final credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-          
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
       if (credential.user != null) {
         emit(LoginSuccessState());
       }
@@ -26,13 +28,16 @@ class AuthCubit extends Cubit<AuthStates> {
       } else if (e.code == 'wrong-password') {
         emit(LoginErrorState(error: 'كلمة المرور خاطئة'));
       } else {
-        emit(LoginErrorState(error: e.message ?? 'حدثت مشكلة بالتسجيل حاول لاحقاً'));
+        emit(
+          LoginErrorState(
+            error: e.message ?? 'حدثت مشكلة بالتسجيل حاول لاحقاً',
+          ),
+        );
       }
     } catch (e) {
       emit(LoginErrorState(error: 'حدث خطأ، يرجى المحاولة في وقت لاحق'));
     }
   }
-
 
   // -----------------------register for doctor------------------------
 
@@ -166,14 +171,14 @@ class AuthCubit extends Cubit<AuthStates> {
   //       'closeHour': endTime,
   //       'address': address,
   //     }, SetOptions(merge: true));
-      
+
   //     emit(UploadDoctorSuccessState()); // إذا كان اسمها عندك RegisterSuccessState غيرها لها
   //   } catch (e) {
   //     emit(UploadDoctorErrorState(error: e.toString())); // إذا كان اسمها عندك RegisterErrorState غيرها لها
   //   }
   // }
 
-    // =================== دالة تحديث بيانات الطبيب بدون Storage ===================
+  // =================== دالة تحديث بيانات الطبيب بدون Storage ===================
   Future<void> updateDoctorData({
     required String uid,
     String? image, // جعلناه اختياري
@@ -190,8 +195,8 @@ class AuthCubit extends Cubit<AuthStates> {
     try {
       await FirebaseFirestore.instance.collection('doctor').doc(uid).set({
         // التعديل السحري: إذا لم يرفع صورة، نضع رابط صورة الطبيب الافتراضية الجاهزة من الإنترنت
-        'image': image != null && image.isNotEmpty 
-            ? image 
+        'image': image != null && image.isNotEmpty
+            ? image
             : 'https://flaticon.com',
         'specialization': specialization,
         'rating': 3,
@@ -203,12 +208,10 @@ class AuthCubit extends Cubit<AuthStates> {
         'closeHour': endTime,
         'address': address,
       }, SetOptions(merge: true));
-      
+
       emit(UploadDoctorSuccessState()); // أو اسم حالة النجاح عندك
     } catch (e) {
       emit(UploadDoctorErrorState(error: e.toString()));
     }
   }
-
-
 }

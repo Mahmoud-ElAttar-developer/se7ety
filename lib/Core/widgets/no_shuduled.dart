@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:se7ety/Core/utils/styles.dart';
 
 class NoScheduledWidget extends StatelessWidget {
-  const NoScheduledWidget({
-    super.key,
-  });
+  const NoScheduledWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

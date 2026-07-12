@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Core/widgets/doctor_card.dart';
-import 'package:flutter_application_6/Fetures/patient/search/presentaion_view/doctor_profile.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Core/widgets/doctor_card.dart';
+import 'package:se7ety/Fetures/patient/search/presentaion_view/doctor_profile.dart';
 
 class SearchHomeView extends StatefulWidget {
   final String searchKey;

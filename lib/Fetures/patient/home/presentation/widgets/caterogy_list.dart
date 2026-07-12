@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Fetures/patient/home/data/card_model.dart';
-import 'package:flutter_application_6/Fetures/patient/home/presentation/explore_specialist.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Fetures/patient/home/data/card_model.dart';
+import 'package:se7ety/Fetures/patient/home/presentation/explore_specialist.dart';
 
 class SpecialistsBanner extends StatelessWidget {
   const SpecialistsBanner({super.key});
@@ -29,15 +28,16 @@ class SpecialistsBanner extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ExploreList(
-                              specialization: cards[index].doctor,
-                            )),
+                      builder: (context) =>
+                          ExploreList(specialization: cards[index].doctor),
+                    ),
                   );
                 },
                 child: ItemCardWidget(
-                    title: cards[index].doctor,
-                    color: cards[index].cardBackground,
-                    lightColor: cards[index].cardlightColor),
+                  title: cards[index].doctor,
+                  color: cards[index].cardBackground,
+                  lightColor: cards[index].cardlightColor,
+                ),
               );
             },
           ),
@@ -48,11 +48,12 @@ class SpecialistsBanner extends StatelessWidget {
 }
 
 class ItemCardWidget extends StatelessWidget {
-  const ItemCardWidget(
-      {super.key,
-      required this.title,
-      required this.color,
-      required this.lightColor});
+  const ItemCardWidget({
+    super.key,
+    required this.title,
+    required this.color,
+    required this.lightColor,
+  });
   final String title;
   final Color color;
   final Color lightColor;
@@ -70,8 +71,8 @@ class ItemCardWidget extends StatelessWidget {
           BoxShadow(
             offset: const Offset(4, 4),
             blurRadius: 10,
-             color: lightColor.withAlpha(204),
-          )
+            color: lightColor.withAlpha(204),
+          ),
         ],
       ),
       child: ClipRRect(
@@ -82,29 +83,29 @@ class ItemCardWidget extends StatelessWidget {
             Positioned(
               top: -20,
               right: -20,
-              child: CircleAvatar(
-                backgroundColor: lightColor,
-                radius: 60,
-              ),
+              child: CircleAvatar(backgroundColor: lightColor, radius: 60),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SvgPicture.asset('assets/Doctors-pana.svg',
-                       ),
+                  SvgPicture.asset('assets/Doctors-pana.svg'),
                   Gap(20),
                   Flexible(
-                    child: Text(title,
-                        textAlign: TextAlign.center,
-                        style: getTitleStyle(
-                            color: AppColors.white, fontSize: 14)),
+                    child: Text(
+                      title,
+                      textAlign: TextAlign.center,
+                      style: getTitleStyle(
+                        color: AppColors.white,
+                        fontSize: 14,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 20),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

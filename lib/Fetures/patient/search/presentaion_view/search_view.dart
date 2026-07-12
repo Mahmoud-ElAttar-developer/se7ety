@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Fetures/patient/search/presentaion_view/widgets/search_list.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Fetures/patient/search/presentaion_view/widgets/search_list.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
 
   @override
   State<SearchView> createState() => _SearchViewState();
-
 }
 
 class _SearchViewState extends State<SearchView> {

@@ -1,7 +1,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
-// import 'package:flutter_application_6/Core/utils/colors.dart';
-// import 'package:flutter_application_6/Core/utils/styles.dart';
+// import 'package:se7ety/Core/utils/colors.dart';
+// import 'package:se7ety/Core/utils/styles.dart';
 
 // import 'package:google_fonts/google_fonts.dart';
 

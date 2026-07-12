@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Fetures/authentication/data/specilaization_list.dart';
-
+import 'package:se7ety/Fetures/authentication/data/specilaization_list.dart';
 
 const Color skyBlue = Color(0xff71b4fb);
 const Color lightBlue = Color(0xff7fbcfb);
@@ -24,49 +23,13 @@ class CardModel {
 
 List<CardModel> cards = [
   CardModel(specialization[0], skyBlue, lightBlue), //القلب
-  CardModel(
-    specialization[1],
-    green,
-    lightGreen,
-  ), //عام
-  CardModel(
-    specialization[2],
-    orange,
-    lightOrange,
-  ), // نساء وتوليد
-  CardModel(
-    specialization[3],
-    purple,
-    purpleLight,
-  ), // باطنه
-  CardModel(
-    specialization[4],
-    green,
-    lightGreen,
-  ), // تجميل وترميم
-  CardModel(
-    specialization[5],
-    skyBlue,
-    lightBlue,
-  ), //  اسنان
-  CardModel(
-    specialization[6],
-    green,
-    lightGreen,
-  ), //  انف اذن
-  CardModel(
-    specialization[7],
-    orange,
-    lightOrange,
-  ), // عيون
-  CardModel(
-    specialization[8],
-    purple,
-    purpleLight,
-  ), //  عظام
-  CardModel(
-    specialization[9],
-    green,
-    lightGreen,
-  ), // اطفال
+  CardModel(specialization[1], green, lightGreen), //عام
+  CardModel(specialization[2], orange, lightOrange), // نساء وتوليد
+  CardModel(specialization[3], purple, purpleLight), // باطنه
+  CardModel(specialization[4], green, lightGreen), // تجميل وترميم
+  CardModel(specialization[5], skyBlue, lightBlue), //  اسنان
+  CardModel(specialization[6], green, lightGreen), //  انف اذن
+  CardModel(specialization[7], orange, lightOrange), // عيون
+  CardModel(specialization[8], purple, purpleLight), //  عظام
+  CardModel(specialization[9], green, lightGreen), // اطفال
 ];

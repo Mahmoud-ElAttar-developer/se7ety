@@ -3,16 +3,15 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_6/Core/utils/colors.dart';
-import 'package:flutter_application_6/Core/utils/styles.dart';
-import 'package:flutter_application_6/Fetures/authentication/data/specilaization_list.dart';
-import 'package:flutter_application_6/Fetures/authentication/presentation/view_model/auth_cubit.dart';
-import 'package:flutter_application_6/Fetures/authentication/presentation/view_model/auth_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-
+import 'package:se7ety/Core/utils/colors.dart';
+import 'package:se7ety/Core/utils/styles.dart';
+import 'package:se7ety/Fetures/authentication/data/specilaization_list.dart';
+import 'package:se7ety/Fetures/authentication/presentation/view_model/auth_cubit.dart';
+import 'package:se7ety/Fetures/authentication/presentation/view_model/auth_states.dart';
 
 class DoctorUploadData extends StatefulWidget {
   const DoctorUploadData({super.key, required int index});
@@ -29,10 +28,12 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
   final TextEditingController _phone2 = TextEditingController();
   String _specialization = specialization[0];
 
-  late String _startTime =
-      DateFormat('hh:mm a').format(DateTime(2023, 9, 7, 10, 00));
-  late String _endTime =
-      DateFormat('hh:mm a').format(DateTime(2023, 9, 7, 22, 00));
+  late String _startTime = DateFormat(
+    'hh:mm a',
+  ).format(DateTime(2023, 9, 7, 10, 00));
+  late String _endTime = DateFormat(
+    'hh:mm a',
+  ).format(DateTime(2023, 9, 7, 22, 00));
 
   @override
   void initState() {
@@ -42,8 +43,9 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
 
   // 1- instance of the firebase storage with the bucket URL...
 
-  final FirebaseStorage _storage =
-      FirebaseStorage.instanceFor(bucket: 'gs://se7ety-a9f9b.appspot.com');
+  final FirebaseStorage _storage = FirebaseStorage.instanceFor(
+    bucket: 'gs://se7ety-a9f9b.appspot.com',
+  );
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String? _imagePath;
   File? file;
@@ -57,14 +59,14 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
     userID = user?.uid;
   }
 
-
   // method to upload and get the image url
 
   Future<String> uploadImageToFireStore(File image, String imageName) async {
     // 2- choose file location (path)
-    Reference ref =
-        _storage.ref().child('doctor/${_auth.currentUser!.uid}$imageName');
-        // 3- choose the file tybe ( image/jpeg)
+    Reference ref = _storage.ref().child(
+      'doctor/${_auth.currentUser!.uid}$imageName',
+    );
+    // 3- choose the file tybe ( image/jpeg)
     SettableMetadata metadata = SettableMetadata(contentType: 'image/jpeg');
     // 4- upload Image to storage
     await ref.putFile(image, metadata);
@@ -75,8 +77,9 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
 
   Future<void> _pickImage() async {
     _getUser();
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
 
     if (pickedFile != null) {
       setState(() {
@@ -91,39 +94,39 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthStates>(
-           listener: (context, state) {
-          if (state is UploadDoctorSuccessState) {
-            // استخدام حالة النجاح اللي عندك في الـ states
-           context.go('/navBarDoc');
-          } else if (state is UploadDoctorErrorState) {
-            // استخدام حالة الخطأ اللي عندك في الـ states
-            Navigator.of(context).pop();
-            // إظهار الخطأ باستخدام الـ SnackBar الافتراضي عشان الـ dialog مش معموله import
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.error)),
-            );
-          } else if (state is UploadDoctorLoadingState) {
-            // دايالوج التحميل المؤقت
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (context) => const Center(child: CircularProgressIndicator()),
-            );
-          }
-        },
+      listener: (context, state) {
+        if (state is UploadDoctorSuccessState) {
+          // استخدام حالة النجاح اللي عندك في الـ states
+          context.go('/navBarDoc');
+        } else if (state is UploadDoctorErrorState) {
+          // استخدام حالة الخطأ اللي عندك في الـ states
+          Navigator.of(context).pop();
+          // إظهار الخطأ باستخدام الـ SnackBar الافتراضي عشان الـ dialog مش معموله import
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.error)));
+        } else if (state is UploadDoctorLoadingState) {
+          // دايالوج التحميل المؤقت
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) =>
+                const Center(child: CircularProgressIndicator()),
+          );
+        }
+      },
 
       child: Scaffold(
         appBar: AppBar(
-          title:  Text('إكمال عملية التسجيل',style: TextStyle(color: AppColors.color1),),
+          title: Text(
+            'إكمال عملية التسجيل',
+            style: TextStyle(color: AppColors.color1),
+          ),
         ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                updateProfileDoctor(),
-              ],
-            ),
+            child: Column(children: [updateProfileDoctor()]),
           ),
         ),
         bottomNavigationBar: Container(
@@ -136,15 +139,17 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   context.read<AuthCubit>().updateDoctorData(
-                      uid: userID ?? '',
-                      image:  '',
-                      specialization: _specialization,
-                      email: user!.email ?? '',
-                      phone1: _phone1.text,
-                      bio: _bio.text,
-                      startTime: _startTime,
-                      endTime: _endTime,
-                      address: _address.text, phone2: '');
+                    uid: userID ?? '',
+                    image: '',
+                    specialization: _specialization,
+                    email: user!.email ?? '',
+                    phone1: _phone1.text,
+                    bio: _bio.text,
+                    startTime: _startTime,
+                    endTime: _endTime,
+                    address: _address.text,
+                    phone2: '',
+                  );
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -203,18 +208,16 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
             padding: const EdgeInsets.fromLTRB(8, 12, 8, 8),
             child: Row(
               children: [
-                Text(
-                  'التخصص',
-                  style: getbodyStyle(color: AppColors.black),
-                )
+                Text('التخصص', style: getbodyStyle(color: AppColors.black)),
               ],
             ),
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             decoration: BoxDecoration(
-                color: AppColors.scaffoldBG,
-                borderRadius: BorderRadius.circular(20)),
+              color: AppColors.scaffoldBG,
+              borderRadius: BorderRadius.circular(20),
+            ),
             child: DropdownButton(
               isExpanded: true,
               iconEnabledColor: AppColors.color1,
@@ -226,10 +229,7 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
                 });
               },
               items: specialization.map((String value) {
-                return DropdownMenuItem(
-                  value: value,
-                  child: Text(value),
-                );
+                return DropdownMenuItem(value: value, child: Text(value));
               }).toList(),
             ),
           ),
@@ -240,7 +240,7 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
                 Text(
                   'نبذة تعريفية',
                   style: getbodyStyle(color: AppColors.black),
-                )
+                ),
               ],
             ),
           ),
@@ -250,8 +250,9 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
             controller: _bio,
             style: TextStyle(color: AppColors.black),
             decoration: const InputDecoration(
-                hintText:
-                    'سجل المعلومات الطبية العامة مثل تعليمك الأكاديمي وخبراتك السابقة...'),
+              hintText:
+                  'سجل المعلومات الطبية العامة مثل تعليمك الأكاديمي وخبراتك السابقة...',
+            ),
             validator: (value) {
               if (value!.isEmpty) {
                 return 'من فضلك ادخل النبذة التعريفية';
@@ -260,10 +261,7 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
               }
             },
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 8.0),
-            child: Divider(),
-          ),
+          const Padding(padding: EdgeInsets.only(top: 8.0), child: Divider()),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -271,7 +269,7 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
                 Text(
                   'عنوان العيادة',
                   style: getbodyStyle(color: AppColors.black),
-                )
+                ),
               ],
             ),
           ),
@@ -300,7 +298,7 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
                       Text(
                         'ساعات العمل من',
                         style: getbodyStyle(color: AppColors.black),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -310,10 +308,7 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
-                      Text(
-                        'الي',
-                        style: getbodyStyle(color: AppColors.black),
-                      )
+                      Text('الي', style: getbodyStyle(color: AppColors.black)),
                     ],
                   ),
                 ),
@@ -328,20 +323,19 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
                   readOnly: true,
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
-                        onPressed: () async {
-                          await showStartTimePicker();
-                        },
-                        icon: Icon(
-                          Icons.watch_later_outlined,
-                          color: AppColors.color1,
-                        )),
+                      onPressed: () async {
+                        await showStartTimePicker();
+                      },
+                      icon: Icon(
+                        Icons.watch_later_outlined,
+                        color: AppColors.color1,
+                      ),
+                    ),
                     hintText: _startTime,
                   ),
                 ),
               ),
-              const SizedBox(
-                width: 10,
-              ),
+              const SizedBox(width: 10),
 
               // ---------- End Time ----------------
               Expanded(
@@ -349,13 +343,14 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
                   readOnly: true,
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
-                        onPressed: () async {
-                          await showEndTimePicker();
-                        },
-                        icon: Icon(
-                          Icons.watch_later_outlined,
-                          color: AppColors.color1,
-                        )),
+                      onPressed: () async {
+                        await showEndTimePicker();
+                      },
+                      icon: Icon(
+                        Icons.watch_later_outlined,
+                        color: AppColors.color1,
+                      ),
+                    ),
                     hintText: _endTime,
                   ),
                 ),
@@ -369,7 +364,7 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
                 Text(
                   'رقم الهاتف 1',
                   style: getbodyStyle(color: AppColors.black),
-                )
+                ),
               ],
             ),
           ),
@@ -377,9 +372,7 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
             keyboardType: TextInputType.text,
             controller: _phone1,
             style: TextStyle(color: AppColors.black),
-            decoration: const InputDecoration(
-              hintText: '+20xxxxxxxxxx',
-            ),
+            decoration: const InputDecoration(hintText: '+20xxxxxxxxxx'),
             validator: (value) {
               if (value!.isEmpty) {
                 return 'من فضلك ادخل الرقم';
@@ -395,7 +388,7 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
                 Text(
                   'رقم الهاتف 2 (اختياري)',
                   style: getbodyStyle(color: AppColors.black),
-                )
+                ),
               ],
             ),
           ),
@@ -403,9 +396,7 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
             keyboardType: TextInputType.text,
             controller: _phone2,
             style: TextStyle(color: AppColors.black),
-            decoration: const InputDecoration(
-              hintText: '+20xxxxxxxxxx',
-            ),
+            decoration: const InputDecoration(hintText: '+20xxxxxxxxxx'),
           ),
         ],
       ),
@@ -420,10 +411,11 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
         return Theme(
           data: ThemeData(
             timePickerTheme: TimePickerThemeData(
-                helpTextStyle: TextStyle(color: AppColors.color1),
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor),
+              helpTextStyle: TextStyle(color: AppColors.color1),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            ),
             colorScheme: ColorScheme.light(
-                surface: Theme.of(context).scaffoldBackgroundColor,
+              surface: Theme.of(context).scaffoldBackgroundColor,
               primary: AppColors.color1, // header background color
               secondary: AppColors.black,
               onSecondary: AppColors.black,
@@ -453,15 +445,17 @@ class DoctorUploadDataState extends State<DoctorUploadData> {
     final timePicker = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(
-          DateTime.now().add(const Duration(minutes: 15))),
+        DateTime.now().add(const Duration(minutes: 15)),
+      ),
       builder: (context, child) {
         return Theme(
           data: ThemeData(
             timePickerTheme: TimePickerThemeData(
-                helpTextStyle: TextStyle(color: AppColors.color1),
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor),
+              helpTextStyle: TextStyle(color: AppColors.color1),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            ),
             colorScheme: ColorScheme.light(
-                surface: Theme.of(context).scaffoldBackgroundColor,
+              surface: Theme.of(context).scaffoldBackgroundColor,
               primary: AppColors.color1, // header background color
               secondary: AppColors.black,
               onSecondary: AppColors.black,
