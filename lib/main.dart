@@ -7,6 +7,9 @@ import 'package:se7ety/Core/utils/colors.dart';
 import 'package:se7ety/Fetures/authentication/presentation/view_model/auth_cubit.dart';
 
 Future<void> main() async {
+
+
+  
   WidgetsFlutterBinding.ensureInitialized();
 
   try {

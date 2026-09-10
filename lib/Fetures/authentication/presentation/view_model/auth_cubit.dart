@@ -8,7 +8,7 @@ import 'package:se7ety/Fetures/authentication/presentation/view_model/auth_state
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
 
-  // login
+  
   static AuthCubit get(dynamic context) => BlocProvider.of(context);
   // login for users (Doctor / Patient)
   Future<void> login(String email, String password) async {

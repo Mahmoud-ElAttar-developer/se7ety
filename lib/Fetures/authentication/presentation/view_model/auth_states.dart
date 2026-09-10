@@ -23,7 +23,7 @@ class RegisterErrorState extends AuthStates {
 }
 
 
-
+// =================== Upload Doctor States ===================
 
 class UploadDoctorLoadingState extends AuthStates {}
 
